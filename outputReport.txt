@@ -1,0 +1,77 @@
+outputReport.txt
+=========================
+Part 1:
+
+worst case runtime to build AVL is O(N)
+because we loop through all the books O(N)
+and for each book we may have to make a recursive call but still amortized to O(1)
+
+Imbalance occurred at inserting ISBN: 978-0877285168; Fixed in LEFT-RIGHT rotation
+Imbalance occurred at inserting ISBN: 978-0374104092; Fixed in LEFT-RIGHT rotation
+Imbalance occurred at inserting ISBN: 978-0345453747; Fixed in RIGHT rotation
+Imbalance occurred at inserting ISBN: 978-0525564454; Fixed in RIGHT rotation
+Imbalance occurred at inserting ISBN: 978-0876852637; Fixed in LEFT-RIGHT rotation
+Imbalance occurred at inserting ISBN: 978-0679724650; Fixed in LEFT-RIGHT rotation
+=================================
+Proper corrections made at every imbalance
+
+978-0060850524 Height: 0
+978-0061031557 Height: 1
+978-0345453747 Height: 0
+978-0374104092 Height: 2
+978-0525564454 Height: 0
+978-0553371307 Height: 3
+978-0679720201 Height: 0
+978-0679724650 Height: 1
+978-0876852637 Height: 0
+978-0877285168 Height: 2
+978-1473322288 Height: 0
+978-1531874445 Height: 1
+978-1846946769 Height: 0
+AVL tree completed
+================================
+Leafs are evenly dispersed
+and the most left and most right nodes are Leafs
+showing that the tree is balanced.
+
+Node keys are in proper order from left to right, 
+showing searchability.
+
+Both of these factors show that it is a true AVL.
+----------------------------------------------
+Part 2:
+
+worst case runtime is O(N^2logN)
+as the bulk of the computation
+is done determining if the the tree is 
+a BST (see isSearchable comments in main.cpp).
+
+Creating an RBT
+Tree is NOT balanced
+Tree is NOT searchable
+Tree is NOT an AVL tree
+Heres the tree inorder
+978-1473322288 Height: 1
+978-0060850524 Height: 0
+978-1531874445 Height: 2
+978-0525564454 Height: 0
+978-0061031557 Height: 4
+978-0679720201 Height: 2
+978-0345453747 Height: 1
+978-0679724650 Height: 0
+978-0877285168 Height: 3
+978-0876852637 Height: 0
+978-0553371307 Height: 1
+978-0374104092 Height: 2
+978-1846946769 Height: 0
+===========================
+As you can can see, the tree is out of order.
+This means the tree is not searchable.
+
+Tree is not balanced as the most left node
+has a height of one and a right child,
+implying that is not balanced
+
+It fails both conditions that make it an AVL tree.
+
+e022f669-c409-4145-8b54-0983b412125b

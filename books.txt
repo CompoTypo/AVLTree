@@ -1,0 +1,14 @@
+"ISBN", "title", "author"
+978-0061031557, Triggerfish_Twist, Dorsey
+978-1531874445, Ritual, Pinner
+978-0877285168, The_Book_of_Lies, Crowley
+978-0679720201, The_Stranger, Camus
+978-0374104092, Annihilation, VanderMeer
+978-0345453747, The_Hitchhiker,'s_Guide_to_the_Galaxy Adams
+978-1473322288, The_Overcoat, Gogol
+978-0060850524, Brave_New_World, Huxley
+978-0553371307, Food_of_the_Gods,:_The_Search_for_the_Original_Tree_of_Knowledge McKenna
+978-0525564454, The_Myth_of_Sisyphus, Camus
+978-0876852637, Factotum, Bukowski
+978-1846946769, In_the_Dust_of_This_Planet,:_Horror_of_Philosophy Thacker
+978-0679724650, Beyond_Good_and_Evil, Nietzsche
