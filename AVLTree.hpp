@@ -22,11 +22,11 @@ class AVLTree {
             if (t == NULL) {
                 t = new AVLNode(book);
             } else if (random % 2 == 0) {
-                t->setLeftPtr(insertWithoutOrganization(book, t->getLeftPtr()));
+                t->setLPtr(insertWithoutOrganization(book, t->getLPtr()));
             } else if (random % 2 == 1) {
-                t->setRightPtr(insertWithoutOrganization(book, t->getRightPtr()));
+                t->setRPtr(insertWithoutOrganization(book, t->getRPtr()));
             }
-            t->setHeight(max(t->getLeftPtr()->getHeight(), t->getRightPtr()->getHeight()) + 1);
+            t->setHeight(max(t->getLPtr()->getHeight(), t->getRPtr()->getHeight()) + 1);
             return t;
         }
 
@@ -36,9 +36,9 @@ class AVLTree {
             if (t == NULL) {
                 t = new AVLNode(book);
             } else if (book->getISBN() < t->getKey()) {
-                t->setLeftPtr(insert(book, t->getLeftPtr()));
-                if (t->getLeftPtr()->getHeight() - t->getRightPtr()->getHeight() == 2) {
-                    if(book->getISBN() < t->getLeftPtr()->getKey()) {
+                t->setLPtr(insert(book, t->getLPtr()));
+                if (t->getLPtr()->getHeight() - t->getRPtr()->getHeight() == 2) {
+                    if(book->getISBN() < t->getLPtr()->getKey()) {
                         cout << "Imbalance occurred at inserting ISBN: " << book->getISBN() << "; Fixed in RIGHT rotation" << endl;
                         t = singleRightRotate(t);
                     } else {
@@ -48,9 +48,9 @@ class AVLTree {
                 }
 
             } else if (book->getISBN() > t->getKey()) {
-                t->setRightPtr(insert(book, t->getRightPtr()));
-                if (t->getRightPtr()->getHeight() - t->getLeftPtr()->getHeight() == 2) {
-                    if(book->getISBN() > t->getRightPtr()->getKey()) {
+                t->setRPtr(insert(book, t->getRPtr()));
+                if (t->getRPtr()->getHeight() - t->getLPtr()->getHeight() == 2) {
+                    if(book->getISBN() > t->getRPtr()->getKey()) {
                         cout << "Imbalance occurred at inserting ISBN: " << book->getISBN() << "; Fixed in LEFT rotation" << endl;
                         t = singleLeftRotate(t);
                     } else {
@@ -60,43 +60,43 @@ class AVLTree {
                 }
             }
 
-            t->setHeight(max(t->getLeftPtr()->getHeight(), t->getRightPtr()->getHeight()) + 1);
+            t->setHeight(max(t->getLPtr()->getHeight(), t->getRPtr()->getHeight()) + 1);
             return t;
         }
 
         // amortized to O(1)
         // right rotation
         AVLNode* singleRightRotate(AVLNode* t) {
-            AVLNode* u = t->getLeftPtr();
-            t->setLeftPtr(u->getRightPtr());
-            u->setRightPtr(t);
-            t->setHeight(max(t->getLeftPtr()->getHeight(), t->getRightPtr()->getHeight()) + 1);
-            u->setHeight(max(u->getLeftPtr()->getHeight(), t->getHeight()) + 1);
+            AVLNode* u = t->getLPtr();
+            t->setLPtr(u->getRPtr());
+            u->setRPtr(t);
+            t->setHeight(max(t->getLPtr()->getHeight(), t->getRPtr()->getHeight()) + 1);
+            u->setHeight(max(u->getLPtr()->getHeight(), t->getHeight()) + 1);
             return u;
         }
 
         // amortized to O(1)
         // left rotation
         AVLNode* singleLeftRotate(AVLNode* t) {
-            AVLNode* u = t->getRightPtr();
-            t->setRightPtr(u->getLeftPtr());
-            u->setLeftPtr(t);
-            t->setHeight(max(t->getLeftPtr()->getHeight(), t->getRightPtr()->getHeight()) + 1);
-            u->setHeight(max(u->getRightPtr()->getHeight(), t->getHeight()) + 1);
+            AVLNode* u = t->getRPtr();
+            t->setRPtr(u->getLPtr());
+            u->setLPtr(t);
+            t->setHeight(max(t->getLPtr()->getHeight(), t->getRPtr()->getHeight()) + 1);
+            u->setHeight(max(u->getRPtr()->getHeight(), t->getHeight()) + 1);
             return u;
         }
 
         // amortized to O(1)
         // left rotation then right, hence left-right
         AVLNode* doubleLeftRotate(AVLNode* t) {
-            t->setRightPtr(singleRightRotate(t->getRightPtr()));
+            t->setRPtr(singleRightRotate(t->getRPtr()));
             return singleLeftRotate(t);
         }
 
         // amortized to O(1)
         // right rotation then left, hence right-left
         AVLNode* doubleRightRotate(AVLNode* t) {
-            t->setLeftPtr(singleLeftRotate(t->getLeftPtr()));
+            t->setLPtr(singleLeftRotate(t->getLPtr()));
             return singleRightRotate(t);
         }   
 
@@ -106,9 +106,9 @@ class AVLTree {
             if(t == NULL) {
                 return;
             } else {
-                inorder(t->getLeftPtr());
+                inorder(t->getLPtr());
                 cout << t->getKey() << " Height: " << t->getHeight() << endl;                
-                inorder(t->getRightPtr());
+                inorder(t->getRPtr());
             }
         }
 
@@ -122,10 +122,10 @@ class AVLTree {
                 return true;
             }
 
-            Lh = root->getLeftPtr()->getHeight();
-            Rh = root->getRightPtr()->getHeight();
+            Lh = root->getLPtr()->getHeight();
+            Rh = root->getRPtr()->getHeight();
 
-            if (abs(Lh - Rh) <= 1 && isBalanced(root->getLeftPtr()) && isBalanced(root->getRightPtr())) {
+            if (abs(Lh - Rh) <= 1 && isBalanced(root->getLPtr()) && isBalanced(root->getRPtr())) {
                 return true;
             } else {
                 return false;
@@ -136,13 +136,11 @@ class AVLTree {
         // checks if the tree is searchable (IE, organized smallest to largest, left to right respectively)
         bool isBinarySearchable (string min, string max, AVLNode* node) {
         
-            if (node == NULL) {
+            if (node == NULL) 
                 return true;
-            }
 
-            if (node->getKey() < min || node->getKey() > max) {
+            if (node->getKey() < min || node->getKey() > max) 
                 return false;
-            }
 
             char lastChar = node->getKey()[node->getKey().length() - 1];
             char lastCharDec = lastChar - 1;
@@ -151,7 +149,7 @@ class AVLTree {
             string leftMax = node->getKey().substr(0, node->getKey().length() - 1) + lastCharDec;
             string rightMin = node->getKey().substr(0, node->getKey().length() - 1) + lastCharInc;
             
-            return (isBinarySearchable(min, leftMax, node->getLeftPtr()) && isBinarySearchable(rightMin, max, node->getRightPtr()));
+            return (isBinarySearchable(min, leftMax, node->getLPtr()) && isBinarySearchable(rightMin, max, node->getRPtr()));
         }
 
     public:

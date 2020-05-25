@@ -11,8 +11,8 @@ private:
     int height;
     std::string key;
     Book *value;
-    AVLNode *leftPtr;
-    AVLNode *rightPtr;
+    AVLNode *lPtr;
+    AVLNode *rPtr;
 
 public:
     // AVLNode constructor
@@ -22,8 +22,8 @@ public:
         key = book->getISBN();
         value = book;
         height = 0;
-        leftPtr = NULL;
-        rightPtr = NULL;
+        lPtr = NULL;
+        rPtr = NULL;
     }
 
     // Getters and setters below
@@ -46,14 +46,14 @@ public:
             return this->height;
     }
 
-    AVLNode *getLeftPtr()
+    AVLNode *getLPtr()
     {
-        return this->leftPtr;
+        return this->lPtr;
     }
 
-    AVLNode *getRightPtr()
+    AVLNode *getRPtr()
     {
-        return this->rightPtr;
+        return this->rPtr;
     }
 
     void setData(Book *bookData)
@@ -66,14 +66,14 @@ public:
         this->height = newHeight;
     }
 
-    void setLeftPtr(AVLNode *left)
+    void setLPtr(AVLNode *left)
     {
-        this->leftPtr = left;
+        this->lPtr = left;
     }
 
-    void setRightPtr(AVLNode *right)
+    void setRPtr(AVLNode *right)
     {
-        this->rightPtr = right;
+        this->rPtr = right;
     }
 };
 #endif
