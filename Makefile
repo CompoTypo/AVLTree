@@ -1,8 +1,8 @@
 build:
-	g++ main.cpp AVLNode.hpp AVLTree.hpp Book.hpp -o avl.o -g
+	g++ src/* -o dist/avl.o -g
 
 run:
-	./avl.o books.txt
+	./dist/avl.o ./data/books.txt
 
 debug:
-	gdb avl.o
+	gdb dist/avl.o

@@ -6,13 +6,6 @@
 #include <string>
 #include <vector>
 
-//template <class T>
-//static void stream(std::string in, T *out)
-//{
-//    std::stringstream val(in);
-//    val >> *out;
-//}
-
 template <class Row>
 class Table
 {

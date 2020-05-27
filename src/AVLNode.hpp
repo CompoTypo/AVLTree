@@ -5,22 +5,25 @@
 #include <string>
 #include "./Book.hpp"
 
+template <class T>
 class AVLNode
 {
 private:
-    int height;
     std::string key;
-    Book *value;
+    int height;
+    T *value;
     AVLNode *lPtr;
     AVLNode *rPtr;
 
 public:
     // AVLNode constructor
+    // Param 1, key
+    // Param 2, template type
     // O(1)
-    AVLNode(Book *book)
+    AVLNode(std::string k, T *item)
     {
-        key = book->getISBN();
-        value = book;
+        key = k;
+        value = item;
         height = 0;
         lPtr = NULL;
         rPtr = NULL;
@@ -30,10 +33,11 @@ public:
     // O(1) for all
     std::string getKey()
     {
-        return this->key;
+        return key;
     }
 
-    Book *getValue()
+
+    T *getValue()
     {
         return this->value;
     }
@@ -46,17 +50,17 @@ public:
             return this->height;
     }
 
-    AVLNode *getLPtr()
+    AVLNode<T> *getLPtr()
     {
         return this->lPtr;
     }
 
-    AVLNode *getRPtr()
+    AVLNode<T> *getRPtr()
     {
         return this->rPtr;
     }
 
-    void setData(Book *bookData)
+    void setValue(T *bookData)
     {
         this->value = bookData;
     }
@@ -66,12 +70,12 @@ public:
         this->height = newHeight;
     }
 
-    void setLPtr(AVLNode *left)
+    void setLPtr(AVLNode<T> *left)
     {
         this->lPtr = left;
     }
 
-    void setRPtr(AVLNode *right)
+    void setRPtr(AVLNode<T> *right)
     {
         this->rPtr = right;
     }
