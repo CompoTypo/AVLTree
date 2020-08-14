@@ -36,7 +36,6 @@ public:
         return key;
     }
 
-
     T *getValue()
     {
         return this->value;
